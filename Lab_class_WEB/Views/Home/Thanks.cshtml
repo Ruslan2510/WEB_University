@@ -1,0 +1,55 @@
+﻿@model Lab_class_WEB.Models.GuestResponse
+@using System.Net.Mail;
+@using System.Net;
+
+
+@{
+    ViewData["Title"] = "Thanks";
+}
+
+@{
+    try
+    {
+        // отправитель - устанавливаем адрес и отображаемое в письме имя
+        MailAddress from = new MailAddress("borodaj.ruslan7@gmail.com", "Boroday Ruslan");
+        // кому отправляем
+        MailAddress to = new MailAddress("r.r.borodai@student.khai.edu");
+        // создаем объект сообщения
+        MailMessage mailMessage = new MailMessage(from, to);
+        // тема письма
+        mailMessage.Subject = "RSVP Приглашение";
+        // текст письма
+        mailMessage.Body = Model.Name + ((Model.WillAttend ?? false) ? "" : " не") + " придет.";
+        // адрес smtp-сервера и порт, с которого будем отправлять письмо
+        SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587);
+        // логин и пароль
+        smtp.Credentials = new NetworkCredential("borodaj.ruslan7@gmail.com", "Ruxa1ruxa1");
+        smtp.EnableSsl = true;
+        smtp.Send(mailMessage);
+    }
+    catch (Exception)
+    {
+        @:<b>К сожалению при отправке письма возникла ошибка.</b>
+    }
+}
+<div class="text-center">
+    <h1>Спасибо, @Model.Name!</h1>
+    <div class="lead">
+        @if (Model.WillAttend == true)
+        {
+            @:Здорово что вы придете, напитки уже в холодильнике ;)
+        }
+        else
+        {
+            @:Жаль что вы не придете, но спасибо что дали об этом знать.
+        }
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

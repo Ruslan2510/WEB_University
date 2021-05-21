@@ -1,0 +1,39 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<html>
+<head>
+</head>
+<body>
+    <div class="text-center">
+        <h1 class="display-4">AJAX запрос на .NET Core</h1>
+        <p id="result_text"></p>
+        <a class="btn btn-info btn-sm" onclick="getInfo(3);">Выполнить запрос на 3 элемента</a>
+        </br>
+        <a class="btn btn-info btn-sm" onclick="getInfo(10);">Выполнить запрос на 10 элементов</a>
+        </br>
+        <a class="btn btn-info btn-sm" onclick="getInfo(0);">Выполнить запрос на 0 элементов</a>
+        </br>
+    </div>
+
+    <hr />
+    <hr />
+    <hr />
+    <hr />
+    @using (Html.BeginForm("Create", "Home", FormMethod.Post))
+    {
+        <p>
+            <label>Имя</label><br />
+            @Html.TextBox("Name")
+        </p>
+        <p>
+            <label>Возраст</label><br />
+            @Html.TextBox("Age", "", new { type = "number" })
+        </p>
+        <p>
+            <input type="submit" value="Отправить" />
+        </p>
+    }
+</body>
+</html>

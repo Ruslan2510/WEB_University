@@ -1,0 +1,1 @@
+﻿<%@ Application Codebehind="Global.asax.cs" Inherits="GenerateAnswerFromController.MvcApplication" Language="C#" %>

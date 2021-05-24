@@ -1,0 +1,1 @@
+﻿<%@ Application Codebehind="Global.asax.cs" Inherits="ControllersFabric_MVC.MvcApplication" Language="C#" %>

@@ -1,0 +1,24 @@
+﻿@model HtmlFroms_.Models.User
+
+@{
+    ViewBag.Title = "CreateUser";
+}
+
+<h2>Создать пользователя</h2>
+@using (Html.BeginRouteForm("FormRoute", null, FormMethod.Post,
+    new { @class = "userCssClass", data_formType="user" }))
+{ 
+    <div class="item">
+        <label>UserId</label>
+        @Html.TextBoxFor(user => user.UserId)
+    </div>
+    <div class="item">
+        <label>Имя</label>
+        @Html.TextBoxFor(user => user.FirstName)
+    </div>
+    <div class="item">
+        <label>Фамилия</label>
+        @Html.TextBoxFor(user => user.LastName)
+    </div>
+    <input type="submit" value="Отправить" />
+}
